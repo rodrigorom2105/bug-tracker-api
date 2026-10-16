@@ -1,0 +1,25 @@
+services:
+  db:                          # service name (your choice). Other containers would reach it by this name
+    image: postgres:17         # official Postgres image, pinned to a major version
+    container_name: bugtracker-db   # fixed name, so docker exec commands are easy to type
+    environment:
+      POSTGRES_USER: bugtracker      # created when the container starts for the first time
+      POSTGRES_PASSWORD: bugtracker
+      POSTGRES_DB: bugtracker_dev    # database created automatically
+    ports:
+      - "5432:5432"            # "host:container" → your machine's 5432 goes to the container's 5432
+    volumes:
+      - db_data:/var/lib/postgresql/data   # where Postgres stores its files inside the container
+
+  test_db:
+    image: postgres:17
+    container_name: bugtracker-test-db
+    environment:
+      POSTGRES_USER: bugtracker
+      POSTGRES_PASSWORD: bugtracker
+      POSTGRES_DB: bugtracker_test
+    ports:
+      - "5433:5432"
+
+volumes:
+  db_data:                     # a named volume managed by Docker: survives container restarts
