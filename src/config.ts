@@ -7,6 +7,7 @@ const schema = z.object({
   DATABASE_URL: z.url({ protocol: postgresProtocol }),
   TEST_DATABASE_URL: z.url({ protocol: postgresProtocol }),
   PORT: z.coerce.number().int().min(1).max(65535).default(3000),
+  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 });
 
 const parsed = schema.safeParse(process.env);
