@@ -38,7 +38,7 @@ describe("createIssue tests", () => {
     expect(issue.description).toBe(issueDescription);
   });
 
-  it("creates issue and return correct shape", async () => {
+  it("creates issue and returns correct shape", async () => {
     const issue = await createIssue({ title: "Login button broken" });
 
     expect(issue.id).toBeTypeOf("number");
@@ -55,7 +55,7 @@ describe("findIssueById tests", () => {
     expect(found).toEqual(issue);
   });
 
-  it("returns null when the issue doesn't exists", async () => {
+  it("returns null when the issue doesn't exist", async () => {
     const found = await findIssueById(999999);
     expect(found).toBeNull();
   });
