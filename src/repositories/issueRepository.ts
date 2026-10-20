@@ -17,6 +17,13 @@ export type CreateIssueInput = {
   priority?: IssuePriority | undefined;
 };
 
+export type UpdateIssueInput = {
+  title?: string;
+  description?: string | null | undefined;
+  status?: IssueStatus | undefined;
+  priority?: IssuePriority | undefined;
+};
+
 function rowToIssue(row: IssueRow): Issue {
   return {
     id: row.id,
@@ -70,4 +77,19 @@ export async function findIssueById(id: number): Promise<Issue | null> {
     return null;
   }
   return rowToIssue(row);
+}
+
+export async function listIssues(): Promise<Issue[]> {
+  throw new Error("Not implemented yet");
+}
+
+export async function updateIssue(
+  id: number,
+  input: UpdateIssueInput,
+): Promise<Issue | null> {
+  throw new Error("Not implemented yet");
+}
+
+export async function deleteIssue(id: number): Promise<boolean> {
+  throw new Error("Not implemented yet");
 }
